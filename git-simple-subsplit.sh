@@ -5,11 +5,15 @@
 #
 # USAGE:
 # cd repo
-# git-simple-subsplit.sh path git@github.com:user/subrepo.git
+# git-simple-subsplit.sh path git@github.com:user/subrepo.git [branch]
 
 SUBPATH=$1
 REMOTE=$2
-BRANCH=master
+if [ "$3" = "" ] ; then
+	BRANCH=master
+else
+	BRANCH="$3"
+fi
 
 git subtree split --prefix=$SUBPATH --branch=subsplit/$SUBPATH/$BRANCH --rejoin $BRANCH
 git push $REMOTE subsplit/$SUBPATH/$BRANCH:$BRANCH
