@@ -25,7 +25,7 @@ git-simple-subsplit.sh path git@github.com:user/subrepo.git other
 git clone https://github.com/user/masterrepo masterrepo
 cd masterrepo
 git-simple-subsplit.sh path1 git@github.com:user/subrepo1.git
-git-simple-subsplit.sh path2 git@github.com:user/subrepo1.git
+git-simple-subsplit.sh path2 git@github.com:user/subrepo2.git
 git-simple-subsplit.sh path2 git@github.com:user/subrepo2.git otherbranch
 ...
 ```
@@ -37,7 +37,7 @@ Same as "Create" but it will use existing repo and cached data so only add new c
 ```sh
 cd masterrepo
 git-simple-subsplit.sh path1 git@github.com:user/subrepo1.git
-git-simple-subsplit.sh path2 git@github.com:user/subrepo1.git
+git-simple-subsplit.sh path2 git@github.com:user/subrepo22git
 git-simple-subsplit.sh path2 git@github.com:user/subrepo2.git otherbranch
 ...
 ```
