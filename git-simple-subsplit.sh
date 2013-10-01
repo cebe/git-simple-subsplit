@@ -1,11 +1,21 @@
 #!/bin/sh
 # simple and fast way of creating one-way subsplits of git repositories
 #
-# USAGE:
-# cd mainrepo
-# git-simple-subsplit.sh subpath git@github.com:user/subrepo.git [--tags "tag1 tag2 ..."] [--branches "branch1 branch2 ..."]
-#
-# this will sync all branches and all tags
+
+usage()
+{
+	echo ""
+	echo "USAGE:"
+	echo 'git-simple-subsplit.sh subpath git@github.com:user/subrepo.git [--tags "tag1 tag2 ..."] [--branches "branch1 branch2 ..."]'
+	echo ""
+	echo "will sync all branches and all tags by default."
+	exit 1
+}
+
+if [ $# -lt 2 ] ; then
+	echo "unexpected number of parameters."
+	usage
+fi
 
 while [ $# -gt 0 ]; do
 	opt="$1"
@@ -21,7 +31,7 @@ while [ $# -gt 0 ]; do
 					REMOTE=$opt
 				else
 					echo "unexpected number of parameters."
-					exit
+					usage
 				fi
 			fi
 		;;
