@@ -56,15 +56,15 @@ do
 	git checkout "$BRANCH" > /dev/null
 
 	# create and checkout tracking branch
-	(git branch | grep "subsplit-track/$BRANCH") > /dev/null || git checkout -b "subsplit-track/$BRANCH" > /dev/null
-	git checkout "subsplit-track/$BRANCH" > /dev/null
+	(git branch | grep "subsplit-track/$SUBPATH/$BRANCH") > /dev/null || git checkout -b "subsplit-track/$SUBPATH/$BRANCH" > /dev/null
+	git checkout "subsplit-track/$SUBPATH/$BRANCH" > /dev/null
 
 	# merge new changes
 	git merge "$BRANCH" --no-edit > /dev/null
 	if [ $? -eq 0 ] ; then
 
 		echo "    creating/updating subtree split..."
-		git subtree split --prefix="$SUBPATH" --branch="subsplit/$SUBPATH/$BRANCH" --rejoin "subsplit-track/$BRANCH"
+		git subtree split --prefix="$SUBPATH" --branch="subsplit/$SUBPATH/$BRANCH" --rejoin "subsplit-track/$SUBPATH/$BRANCH"
 
 		echo "    pushing changes to remote..."
 		git push -q --force "$REMOTE" "subsplit/$SUBPATH/$BRANCH:$BRANCH"
